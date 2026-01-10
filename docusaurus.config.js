@@ -10,8 +10,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: 'Recloud Wiki',
-    tagline: 'Документация Recloud',
+    title: 'Gml Launcher Wiki',
+    tagline: 'Документация Gml Launcher',
     favicon: 'img/favicon.ico',
 
 
@@ -21,15 +21,15 @@ const config = {
     },
 
     // Set the production url of your site here
-    url: 'https://wiki.recloud.tech',
+    url: 'https://gml-launcher.ru',
     // Set the /<baseUrl>/ pathname under which your site is served
     // For GitHub pages deployment, it is often '/<projectName>/'
     baseUrl: '/',
 
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
-    organizationName: 'RecloudTech', // Usually your GitHub org/user name.
-    projectName: 'recloud-wiki', // Usually your repo name.
+    organizationName: 'Gml-Launcher', // Usually your GitHub org/user name.
+    projectName: 'Gml.Web.Wiki', // Usually your repo name.
 
     onBrokenLinks: 'ignore',
 
@@ -51,7 +51,7 @@ const config = {
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     editUrl:
-                        'https://github.com/RecloudTech/recloud-wiki/tree/master',
+                        'https://github.com/Gml-Launcher/Gml.Web.Wiki/tree/master',
                 },
                 blog: {
                     showReadingTime: true,
@@ -91,10 +91,10 @@ const config = {
                 respectPrefersColorScheme: true,
             },
             navbar: {
-                title: 'Recloud Wiki',
+                title: 'Gml Launcher Wiki',
                 logo: {
-                    alt: 'Recloud Wiki Logo',
-                    src: 'img/logo.svg',
+                    alt: 'Gml Launcher Wiki Logo',
+                    src: 'img/logo-gml.svg',
                 },
                 items: [
                     {
