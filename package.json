@@ -20,13 +20,16 @@
     "@docusaurus/theme-search-algolia": "^3.9.1",
     "@fluentui/react-icons": "^2.0.311",
     "@mdx-js/react": "^3.0.0",
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.0.0",
     "gsap": "^3.13.0",
+    "lucide-react": "^0.460.0",
     "ogl": "^1.0.11",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-feather": "^2.0.10"
+    "react-feather": "^2.0.10",
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.9.1",
