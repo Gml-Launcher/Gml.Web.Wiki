@@ -4,49 +4,41 @@ import GmlIntegrationsNewsVk3 from '/img/gml-integrations-news-vk-3.png';
 import GmlIntegrationsNewsVk5 from '/img/gml-integrations-news-vk-5.png';
 import GmlIntegrationsNewsVk4 from '/img/gml-integrations-news-vk-4.png';
 
-# Из Вконтакте
+# From VK (Vkontakte)
 
-Перед началом интеграции с новостями из социальной сети Вконтакте необходимо пройти процедуру создания приложения и
-получения сервисного токена. Следуйте указаниям приведенным ниже, чтобы успешно выполнить все этапы настройки.
+Before starting the integration with news from the Vkontakte social network, you must complete the procedure of creating an application and obtaining a service token. Follow the instructions below to successfully complete all configuration steps.
 
-## 1. Процесс создания приложения Вконтакте
+## 1. Creating a VK Application
 
-Перейдите на официальный сайт разработчиков Вконтакте по следующей
-ссылке: [https://dev.vk.com/ru/admin/apps-list](https://dev.vk.com/ru/admin/apps-list). Если вы не авторизованы,
-выполните вход в вашу учетную запись. После успешной авторизации откройте вкладку "Приложения".
+Go to the official VK developers website: [https://dev.vk.com/admin/apps-list](https://dev.vk.com/admin/apps-list). If you are not logged in, sign in to your account. After successful authorization, open the "Applications" (Приложения) tab.
 
-На данном этапе необходимо создать новое приложение. Для этого нажмите соответствующую кнопку и заполните все
-необходимые поля в расположенной справа форме. Обратите внимание, что корректность указанных данных имеет ключевое
-значение для дальнейшей работы приложения.
+At this stage, you need to create a new application. Click the corresponding button and fill in all the necessary fields in the form on the right. Note that the accuracy of the provided data is crucial for the further operation of the application.
 
 <p><img className="image-zoom-medium" src={GmlIntegrationsNewsVk1} alt=""/></p>
 
-После заполнения всех полей подтвердите создание приложения.
+After filling in all fields, confirm the creation of the application.
 
 <p><img className="image-zoom-medium" src={GmlIntegrationsNewsVk2} alt=""/></p>
 
-## 2. Получение сервисного токена
+## 2. Obtaining a Service Token
 
-Для получения сервисного токена, перейдите в раздел настроек созданного приложения. В соответствующем разделе
-потребуется сгенерировать сервисный ключ (токен). Этот токен является важным элементом, который обеспечивает возможность
-взаимодействия с API Вконтакте от имени вашего приложения.
+To obtain a service token, go to the settings section of the created application. In the corresponding section, you will need to generate a service key (token). This token is a critical element that allows interaction with the VK API on behalf of your application.
 
-Сохраните полученный токен в надежном месте, так как от его безопасности зависит работа вашего приложения.
+Save the obtained token in a safe place, as the operation of your application depends on its security.
 
 <p><img className="image-zoom-medium" src={GmlIntegrationsNewsVk3} alt=""/></p>
 
-## 3. Передача токена в Gml
+## 3. Adding the Token to Gml
 
-На завершающем этапе интеграции, зайдите в настройки Gml и укажите там ранее полученный сервисный токен. Убедитесь в
-корректности введенных данных, чтобы интеграция прошла успешно.
+In the final stage of integration, go to the Gml settings and enter the previously obtained service token. Ensure the accuracy of the entered data for a successful integration.
 <p><img className="image-zoom-medium" src={GmlIntegrationsNewsVk4} alt=""/></p>
 
-## 4. Импорт новостей из группы вк
+## 4. Importing News from a VK Group
 
-Перейдите на страницу интеграций в раздел новостей и укажите ссылку на ваш паблик, затем нажмите создать
+Go to the integration page in the news section and provide the link to your public page, then click create.
 
 <p><img className="image-zoom-medium" src={GmlIntegrationsNewsVk5} alt=""/></p>
-Если вы всё сделали правильно - новости из группы вк отобразятся на вкладке "Предпросмотр новостей"
 
-После выполнения всех описанных шагов ваш процесс интеграции с новостями из Вконтакте будет завершен. Убедитесь, что все
-настройки соответствуют требованиям, чтобы избежать возможных ошибок при работе.
+If everything is done correctly, news from the VK group will appear on the "News Preview" tab.
+
+After completing all the described steps, your integration with VK news will be complete. Ensure all settings meet the requirements to avoid possible errors.

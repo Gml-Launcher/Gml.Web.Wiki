@@ -4,96 +4,87 @@ sidebar_position: 8
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Скины и плащи
+# Skins and Cloaks
 
+We have tried to simplify skin uploads for your game project as much as possible; you only need to know the actual URL of the skin.
+For Minecraft projects, this is the link to the textures in the user dashboard. If you don't have a website or a project with a dashboard, you can use [TLauncher](https://tlauncher.org/en/catalog/skins/nickname/) or [Ely.by](https://ely.by).
 
-Мы постарались максимально упростить загрузку скинов для вашего игрового проекта, достаточно знать реальный адрес скина.
-Для игровых проектов майнкрафт - это ссылка на текстуры в личном кабинете, если у вас нет сайта или проекта с личным
-кабинетом,
-вы можете использовать [TLauncher](https://tlauncher.org/ru/catalog/skins/nickname/) или [Ely.by](https://ely.by)
+## Using Ready-Made Services
 
-## Использование готовых сервисов
-
-На просторах интернета вы могли уже встречать скины по никам, и если у вас нет ни сайта, ни системы скинов - используйте
-их.
-Для их работы ничего не нужно. Вы можете использовать один из следующих вариантов:
+You might have already seen skins by nicknames online. If you don't have a website or a skin system, you can use them.
+No extra setup is needed. You can use one of the following options:
 
 <Tabs>
-  <TabItem value="aurora" label="Aurora">
-    ```yaml
-    # Скины
-    https://api.aurora-launcher.ru/mojang/username/skin/{userName}
-    # Плащи
-    https://api.aurora-launcher.ru/mojang/username/cape/{userName}
-    ```
-  </TabItem>
-  <TabItem value="danielraybone" label="Danielraybone">
-    ```yaml
-    # Скины
-    https://skins.danielraybone.com/v1/skin/{userName}
-    # Плащи
-    https://skins.danielraybone.com/v1/cape/{userName}
-    ```
-  </TabItem>
-  <TabItem value="tlauncher" label="TLauncher">
-    ```yaml
-    # Скины
-    https://tlauncher.org/upload/all/nickname/{userName}.png
-    # Плащи
-    https://tlauncher.org/upload/all/cloaks/{userName}.png
-    ```
-  </TabItem>
-
-  <TabItem value="tmonitoring" label="T-Monitoring">
-    ```yaml
-    # Скины
-    https://tmonitoring.com/uploads/catalog/skins/nickname/{userName}.png
-    # Плащи
-    https://tmonitoring.com/uploads/catalog/capes/{userName}.png
-    ```
-  </TabItem>
-
+<TabItem value="aurora" label="Aurora">
+```yaml
+# Skins
+https://api.aurora-launcher.ru/mojang/username/skin/{userName}
+# Cloaks
+https://api.aurora-launcher.ru/mojang/username/cape/{userName}
+```
+</TabItem>
+<TabItem value="danielraybone" label="Danielraybone">
+```yaml
+# Skins
+https://skins.danielraybone.com/v1/skin/{userName}
+# Cloaks
+https://skins.danielraybone.com/v1/cape/{userName}
+```
+</TabItem>
+<TabItem value="tlauncher" label="TLauncher">
+```yaml
+# Skins
+https://tlauncher.org/upload/all/nickname/{userName}.png
+# Cloaks
+https://tlauncher.org/upload/all/cloaks/{userName}.png
+```
+</TabItem>
+<TabItem value="tmonitoring" label="T-Monitoring">
+```yaml
+# Skins
+https://tmonitoring.com/uploads/catalog/skins/nickname/{userName}.png
+# Cloaks
+https://tmonitoring.com/uploads/catalog/capes/{userName}.png
+```
+</TabItem>
 </Tabs>
 
 
-## Свой сервис скинов
+## Custom Skin Service
 
 :::info
-Данных вариант подходит для тех проектов, у которых есть сайт с возможностью загрузки скинов или плащей
+This option is suitable for projects that have a website with the ability to upload skins or cloaks.
 :::
 
-Если вы имеете личный кабинет, вы должны знать реальный адрес текстуры, по каждому пользователю, например им может
-выступать
-примерно такой адрес:
+If you have a user dashboard, you should know the actual texture URL for each user. For example, it might look like this:
 
-Скины
+Skins
 ```
-https://mc.recloud.tech/cabient/skins/GamerVII.png
+https://mc.recloud.tech/cabinet/skins/GamerVII.png
 ```
-Плащи
+Cloaks
 ```
-https://mc.recloud.tech/cabient/cloaks/GamerVII.png
+https://mc.recloud.tech/cabinet/cloaks/GamerVII.png
 ```
-Именно такие ссылки нужно указать на странице "Интеграции" -> "Сервис скинов"
+These are the links you need to specify on the "Integrations" -> "Skin Service" page.
 
-> **Важно!** Вместо ника вы можете использовать **UUID** или **Ник игрока**
-> Замените его в соответствии со следующими правилами
+> **Important!** Instead of the nickname, you can use **UUID** or **Player Nickname**.
+> Replace it according to the following rules:
 > ```
-> {userName} - Ник пользователя
-> {userUuid} - Uuid пользователя
+> {userName} - User nickname
+> {userUuid} - User UUID
 > ```
-> По итогу ссылки будут выглядеть примерно следующим образом:
+> As a result, the links will look something like this:
 > ```
-> https://mc.recloud.tech/cabient/skins/{userName}.png
-> https://mc.recloud.tech/cabient/cloaks/{userName}.png
+> https://mc.recloud.tech/cabinet/skins/{userName}.png
+> https://mc.recloud.tech/cabinet/cloaks/{userName}.png
 > ```
 
-## Устранение проблем с текстурами
+## Troubleshooting Texture Issues
 
-1. Проверьте, что файлы скинов и плащей скачиваются, по ссылке, которую вы указали на странице "Интеграции" -> "Сервис
-   скинов"
-2. Убедитесь по какому протоколу возвращаются текстуры по HTTP или HTTPS и используйте его везде
-3. Используйте проксирование для Gml.Web.Proxy: c 5003 портом, для того чтобы грузить скины по HTTPS
-4. Если вы обращаетесь к серверу по IP или localhost - используйте ТОЛЬКО HTTP! В настройках укажите его же!
-5. В случае неправильной конфигурации - проверьте раздел Настройки панели и выполните действия, которые требует панель
-6. Убедитесь, что в настройках лаунчера так же указан верный протокол, по которому работает связка с Gml Api
+1. Check that skin and cloak files are downloadable via the link you specified on the "Integrations" -> "Skin Service" page.
+2. Ensure you know which protocol (HTTP or HTTPS) is used to return textures and use it everywhere.
+3. Use proxying for Gml.Web.Proxy: with port 5003 to load skins over HTTPS.
+4. If you access the server via IP or localhost, use ONLY HTTP! Specify the same in the settings.
+5. In case of incorrect configuration, check the "Panel Settings" section and follow the actions required by the panel.
+6. Ensure that the launcher settings also specify the correct protocol used for the connection with Gml Api.

@@ -19,40 +19,38 @@ import TabItem from '@theme/TabItem';
 Для их работы ничего не нужно. Вы можете использовать один из следующих вариантов:
 
 <Tabs>
-  <TabItem value="aurora" label="Aurora">
-    ```yaml
-    # Скины
-    https://api.aurora-launcher.ru/mojang/username/skin/{userName}
-    # Плащи
-    https://api.aurora-launcher.ru/mojang/username/cape/{userName}
-    ```
-  </TabItem>
-  <TabItem value="danielraybone" label="Danielraybone">
-    ```yaml
-    # Скины
-    https://skins.danielraybone.com/v1/skin/{userName}
-    # Плащи
-    https://skins.danielraybone.com/v1/cape/{userName}
-    ```
-  </TabItem>
-  <TabItem value="tlauncher" label="TLauncher">
-    ```yaml
-    # Скины
-    https://tlauncher.org/upload/all/nickname/{userName}.png
-    # Плащи
-    https://tlauncher.org/upload/all/cloaks/{userName}.png
-    ```
-  </TabItem>
-
-  <TabItem value="tmonitoring" label="T-Monitoring">
-    ```yaml
-    # Скины
-    https://tmonitoring.com/uploads/catalog/skins/nickname/{userName}.png
-    # Плащи
-    https://tmonitoring.com/uploads/catalog/capes/{userName}.png
-    ```
-  </TabItem>
-
+<TabItem value="aurora" label="Aurora">
+```yaml
+# Скины
+https://api.aurora-launcher.ru/mojang/username/skin/{userName}
+# Плащи
+https://api.aurora-launcher.ru/mojang/username/cape/{userName}
+```
+</TabItem>
+<TabItem value="danielraybone" label="Danielraybone">
+```yaml
+# Скины
+https://skins.danielraybone.com/v1/skin/{userName}
+# Плащи
+https://skins.danielraybone.com/v1/cape/{userName}
+```
+</TabItem>
+<TabItem value="tlauncher" label="TLauncher">
+```yaml
+# Скины
+https://tlauncher.org/upload/all/nickname/{userName}.png
+# Плащи
+https://tlauncher.org/upload/all/cloaks/{userName}.png
+```
+</TabItem>
+<TabItem value="tmonitoring" label="T-Monitoring">
+```yaml
+# Скины
+https://tmonitoring.com/uploads/catalog/skins/nickname/{userName}.png
+# Плащи
+https://tmonitoring.com/uploads/catalog/capes/{userName}.png
+```
+</TabItem>
 </Tabs>
 
 

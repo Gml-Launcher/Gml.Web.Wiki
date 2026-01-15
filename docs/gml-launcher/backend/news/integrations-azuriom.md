@@ -1,10 +1,10 @@
-# Из Azuriom
+# From Azuriom
 
-# Импорт новостей из Azuriom
+# Importing News from Azuriom
 
-После установки, Azuriom предоставляет доступ к своему API новостных постов.
+After installation, Azuriom provides access to its news posts API.
 
-Пример такой ссылки: [https://demo.azuriom.com/api/posts](https://demo.azuriom.com/api/posts)
-или [https://magcent.ru/api/posts](https://magcent.ru/api/posts)
+Example link: [https://demo.azuriom.com/api/posts](https://demo.azuriom.com/api/posts)
+or [https://magcent.ru/api/posts](https://magcent.ru/api/posts)
 
-Именно такую ссылку вы должны вставить в раздел интеграции. Дополнительных манипуляций с сайтом проводить не нужно.
+This is the link you should paste into the integration section. No additional manipulations with the website are required.

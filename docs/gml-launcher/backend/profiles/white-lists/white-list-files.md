@@ -1,10 +1,9 @@
-# Файлы
+# Files
 
-Из названия понятно, что это точечное разрешение определенных файлов, файлы добавленные в этот список будут загружаться
-ТОЛЬКО при следующих условиях
+As the name implies, this is for granting specific permissions to individual files. Files added to this list will be downloaded ONLY under the following conditions:
 
-- Файл отсутствует на компьютере
+- The file is missing from the computer.
 
-> Важно! Перед тем как добавлять файл в белый список, убедитесь что фал загружен
-> в [папку с клиентом](Работа-с-модами.md)
-> и [профиль собран](profiles-download.md). Без этого файл просто не добавится в белый список!
+> **Important!** Before adding a file to the whitelist, ensure that the file is uploaded
+> to the [client folder](../files/mods.md)
+> and the [profile is built](../profile-install.md). Otherwise, the file will not be added to the whitelist!
