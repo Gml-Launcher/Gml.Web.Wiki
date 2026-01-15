@@ -13,7 +13,7 @@ const githubUsernames = [
   'akem1ko',
   'gamerviihub',
   'Dirold2',
-  'l1sonnn',
+  'sergey-bryzgalov',
   'paralexed',
   'overlord-space',
   'darkywings',
