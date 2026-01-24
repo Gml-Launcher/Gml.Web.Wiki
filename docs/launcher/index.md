@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# Игровой лаунчер
+# Game Launcher
 
 import {DocsCardList} from "@site/src/components/DocsCard";
 import {useCurrentSidebarCategory} from '@docusaurus/theme-common';

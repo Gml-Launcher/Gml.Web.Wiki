@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 import AvaloniaVsExtensionMarketplaceScreenshot from '/img/avalonia-plugin-vs.png';
 import AvaloniaVsExtensionNuGetScreenshot from '/img/avalonia-vs-extension-nuget.png';
