@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   wiki:
-    container_name: recloud-wiki
+    container_name: gml-wiki
     build:
       context: .
       dockerfile: Dockerfile
@@ -10,8 +10,8 @@ services:
       - "3031:3031"
     restart: unless-stopped
     networks:
-      - recloud-network
+      - gml-network
 
 networks:
-  recloud-network:
+  gml-network:
     external: true
