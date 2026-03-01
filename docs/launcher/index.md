@@ -1,8 +1,8 @@
 ---
-sidebar_position: 6
+sidebar_position: 5
 ---
 
-# Лаунчер
+# Game Launcher
 
 import {DocsCardList} from "@site/src/components/DocsCard";
 import {useCurrentSidebarCategory} from '@docusaurus/theme-common';

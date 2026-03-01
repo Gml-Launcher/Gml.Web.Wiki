@@ -1,8 +1,8 @@
 ---
-sidebar_position: 6
+sidebar_position: 4
 ---
 
-# Лаунчер
+# Игровой лаунчер
 
 import {DocsCardList} from "@site/src/components/DocsCard";
 import {useCurrentSidebarCategory} from '@docusaurus/theme-common';

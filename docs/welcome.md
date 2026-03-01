@@ -3,4 +3,5 @@ sidebar_position: 1
 ---
 
 # Welcome
-Welcome to the documentation for Recloud.
+
+Welcome to the documentation for GML Launcher.
