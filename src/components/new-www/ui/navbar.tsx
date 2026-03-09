@@ -5,6 +5,7 @@ const navLinks = [
   { href: "#features", label: "Возможности" },
   { href: "#testimonials", label: "Отзывы" },
   { href: "#pricing", label: "Тарифы" },
+  { href: "https://github.com/Gml-Launcher", label: "GitHub" },
   { href: "https://blog.recloud.tech/category/gml/", label: "Блог" },
 ]
 
