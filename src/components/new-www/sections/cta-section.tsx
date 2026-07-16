@@ -1,16 +1,18 @@
-import React from 'react';
-import Link from '@docusaurus/Link';
-import { ArrowRight } from 'lucide-react';
-import { LiquidCtaButton } from '../buttons/liquid-cta-button';
+import React from "react";
+import Link from "@docusaurus/Link";
+import { ArrowRight } from "lucide-react";
+import { LiquidCtaButton } from "../buttons/liquid-cta-button";
 
 export function CtaSection() {
   return (
     <section className="px-6 py-24">
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-zinc-100 mb-6">Готовы начать?</h2>
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-zinc-100 mb-6">
+          Готовы начать?
+        </h2>
         <p className="text-lg text-zinc-500 mb-10 text-balance">
-          Присоединяйтесь к сотням команд, которые уже создают лучшие проекты с помощью нашей платформы.
-          Начните бесплатно сегодня.
+          Разверните Gml Launcher на своём сервере, настройте первую игровую
+          сборку и опубликуйте клиент для игроков.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link href="/docs/gml-launcher/backend/installation/">
@@ -26,5 +28,5 @@ export function CtaSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

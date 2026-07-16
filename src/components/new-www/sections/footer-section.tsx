@@ -65,8 +65,8 @@ export function FooterSection() {
               Gml Launcher
             </Link>
             <p className="mt-4 text-sm text-zinc-500 max-w-xs">
-              Создавайте быстрее, развертывайте эффективнее. Платформа для
-              современных команд.
+              Open-source инструменты для создания, публикации и поддержки
+              Minecraft-лаунчеров.
             </p>
           </div>
 
@@ -156,6 +156,12 @@ export function FooterSection() {
             {/*</Link>*/}
           </div>
         </div>
+        <p className="mx-auto max-w-3xl text-center !text-[10px] mt-3 leading-relaxed text-zinc-700">
+          Gml Launcher — независимый проект и не является официальным продуктом
+          Minecraft. Проект не одобрен, не поддерживается и не связан с Mojang
+          Studios или Microsoft. Minecraft является товарным знаком Microsoft
+          Corporation.
+        </p>
       </div>
     </footer>
   );

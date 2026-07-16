@@ -34,8 +34,8 @@ export function HeroSection() {
       <div className="relative z-10 text-center max-w-3xl mx-auto">
         {/* Badge - customize your announcement */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/80 border border-zinc-800 mb-8">
-          <Desktop16Regular className="w-4 h-4 text-zinc-400" />
-          <span className="text-sm text-zinc-400">Кроссплатформенные решения</span>
+          <Sparkles className="w-4 h-4 text-zinc-400" />
+          <span className="text-sm text-zinc-400">100% Open Source</span>
         </div>
 
         {/* Headline - customize your value proposition */}
