@@ -21,6 +21,7 @@ const githubUsernames = [
   'pyw0ww',
   'KlamrFox',
   'pyw0w',
+  'serega404',
 ];
 
 export function HeroSection() {
@@ -74,7 +75,7 @@ export function HeroSection() {
                   src={`https://github.com/${username}.png?size=60`}
                   alt={`User ${username}`}
                   loading="lazy"
-                  className={`w-10 h-10 rounded-full border-2 border-zinc-950 hover:-translate-y-1 transition object-cover z-[${index + 1}]`}
+                  className={`w-10 h-10 rounded-full border-2 border-zinc-950 bg-white hover:-translate-y-1 transition object-cover z-[${index + 1}]`}
                 />
               ))}
             </div>
