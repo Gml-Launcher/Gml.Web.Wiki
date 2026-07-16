@@ -96,11 +96,6 @@ You need to download the launcher’s dependent projects.
 In the project root, there are bat and sh files to run depending on your operating system.
 If nothing happens or the console closes immediately, check if [Git version control](https://git-scm.com) is installed.
 
-## Minio Not Working
-
-Minio may fail if a too-simple password was set during installation.
-Change it in the `.env` file and restart the project with `docker compose restart`.
-
 ## Connecting Discord
 
 To connect Discord to your launcher,
