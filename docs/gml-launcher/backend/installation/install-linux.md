@@ -4,76 +4,85 @@ sidebar_position: 1
 
 # GNU/Linux
 
-This guide will help you install the Gml.Backend server component on GNU/Linux systems. The installation script will automatically configure all the necessary components for you.
+This guide will help you install the Gml.Backend server component on a GNU/Linux system.
 
 ## Prerequisites
 
 Before starting the installation, make sure you have:
 
-- A GNU/Linux system with the systemd init system
-- Access to a terminal with administrative privileges (sudo)
-- An internet connection to download the installation files
+- a GNU/Linux system;
+- access to a terminal with administrator privileges;
+- an internet connection.
 
-### Officially Tested Distributions
+## Installation with Gml Manager
 
-The server side should work on most modern GNU/Linux distributions, but the official installation script presented here is limited in the distributions it supports. Here is a list of officially tested distributions and their support status:
+Gml Manager is an interactive script for installing, updating, and removing Gml.Backend. By default, it uses the latest stable version and installs the project in `/srv/gml`.
 
-- ✅ Fully supported
-- ⚠️ Should work but has not been tested
-- ❌ Not supported, use [manual installation](install-source)
+The following distributions and their derivatives are officially supported: Debian, Ubuntu, Fedora, Alpine Linux, and Arch Linux. For other distributions, use the [manual installation](install-source) instructions.
 
-| Distribution | Versions |
-| ------------ | -------- |
-| `Ubuntu`     | 25 ✅ 24 ⚠️ 22 ⚠️ |
-| `Debian`     | 13 ✅ 12 ⚠️ |
-| `Fedora`     | 42 ✅ 41 ⚠️ |
-| `Rocky`      | 9  ✅  |
-| `Arch Linux` | ⚠️   |
-| `Alpine`     | ❌   |
-
-## Installation Steps
-
-### Step 1: Downloading the Installation Script
-
-Open a terminal and run the following command to download the installation script:
+Run the installation manager:
 
 ```bash
-curl -O https://raw.githubusercontent.com/Gml-Launcher/Gml.Backend.Installer/refs/heads/master/installer.sh
-````
+curl -sSL https://raw.githubusercontent.com/Gml-Launcher/Gml.Backend/refs/heads/master/installer/gml-manager.sh | sudo sh
+```
 
-This command downloads the installation script from the GitHub repository.
+The manager will prompt you to choose an action (installation, update, or removal), the installation directory, and the project version.
 
-### Step 2: Make the Script Executable
-
-After the script is downloaded, you need to make it executable by running:
+If you are already running as `root`, run the command without `sudo`:
 
 ```bash
-chmod +x ./installer.sh
-````
+curl -sSL https://raw.githubusercontent.com/Gml-Launcher/Gml.Backend/refs/heads/master/installer/gml-manager.sh | sh
+```
 
-This command gives the script permission to run on your system.
+### Non-interactive installation
 
-### Step 3: Run the Installation
-
-Now you can start the installation by running:
+To install the project in a specified directory without additional prompts, pass the parameters through `sh -s --`:
 
 ```bash
-./installer.sh --version v2025.3.2
-````
+curl -sSL https://raw.githubusercontent.com/Gml-Launcher/Gml.Backend/refs/heads/master/installer/gml-manager.sh | sudo sh -s -- install --dir /srv/gml
+```
 
-The script will guide you through the installation process with prompts in Russian. Follow the on-screen instructions to complete the setup.
+Specify `--version` only if you want to pin a specific Docker image tag:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/Gml-Launcher/Gml.Backend/refs/heads/master/installer/gml-manager.sh | sudo sh -s -- install --version v2025.3.2 --dir /srv/gml
+```
+
+### Updating and removing
+
+To update or remove the project, run the corresponding command or start the installation manager and select the required action:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/Gml-Launcher/Gml.Backend/refs/heads/master/installer/gml-manager.sh | sudo sh -s -- update --dir /srv/gml
+```
+
+```bash
+curl -sSL https://raw.githubusercontent.com/Gml-Launcher/Gml.Backend/refs/heads/master/installer/gml-manager.sh | sudo sh -s -- delete --dir /srv/gml
+```
+
+### Compatibility with the legacy installer
+
+If you previously installed the project using the [legacy installer](https://github.com/Gml-Launcher/Gml.Backend.Installer), you can use Gml Manager to update it. Select the `update` action and specify the directory where the project was installed.
+
+## Manual installation
+
+If Gml Manager is not suitable for your system, follow the [manual installation](install-source) instructions.
+
+## Services after installation
+
+- **Web API:** `http://<your_host>:5000` — the main service;
+- **Web Dashboard:** `http://<your_host>:5003` — the monitoring and administration panel;
+- **Gml.Web.Skin.Service:** `http://<your_host>:5006` — the service for managing player textures and personalization.
+
+You can change the addresses and ports in the project settings.
 
 ## Troubleshooting
 
-If you encounter problems during the installation:
+If you encounter problems during installation:
 
-- Make sure you have an internet connection
-- Check that you have administrative rights (try running with sudo if necessary)
-- Check that the commands are entered correctly
-- If the script fails to download, you can download it manually
-  from the [GitHub repository](https://github.com/GamerVII-NET/Gml.Backend.Installer)
+- check your internet connection;
+- make sure Docker Hub and GitHub are accessible (for example, run `wget get.docker.com` and `wget raw.githubusercontent.com`);
+- check that you have administrator privileges;
+- make sure the specified installation directory is writable and empty.
 
-## Additional Information
-
-For more information or to report issues, visit the
-GitHub repository: [Gml.Backend.Installer](https://github.com/GamerVII-NET/Gml.Backend.Installer)
+For more information, visit the [Gml.Backend repository](https://github.com/Gml-Launcher/Gml.Backend).
