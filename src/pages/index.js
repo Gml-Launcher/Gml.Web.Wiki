@@ -3,7 +3,8 @@ import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {Navbar} from '@site/src/components/new-www/ui/navbar';
 import {HeroSection} from '@site/src/components/new-www/sections/hero-section';
-import {ImpactSection} from '@site/src/components/new-www/sections/impact-section';
+import {ScreenshotGallerySection} from '@site/src/components/new-www/sections/screenshot-gallery-section';
+// import {ImpactSection} from '@site/src/components/new-www/sections/impact-section';
 import {FeaturesSection} from '@site/src/components/new-www/sections/features-section';
 // import {TestimonialsSection} from '@site/src/components/new-www/sections/testimonials-section';
 import {PricingSection} from '@site/src/components/new-www/sections/pricing-section';
@@ -59,7 +60,8 @@ export default function Home() {
             <main className="min-h-screen bg-zinc-950">
                 <Navbar/>
                 <HeroSection/>
-                <ImpactSection/>
+                <ScreenshotGallerySection/>
+                {/* <ImpactSection/> */}
                 <FeaturesSection/>
                 {/* <TestimonialsSection/> */}
                 <PricingSection/>
