@@ -40,15 +40,15 @@ export function HeroSection() {
 
         {/* Headline - customize your value proposition */}
         <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6">
-          <span className="text-zinc-100 block font-extrabold">Развернул.</span>
+          <span className="text-zinc-100 block font-extrabold">Платформа для запуска</span>
           <span className="bg-gradient-to-r from-zinc-500 via-zinc-300 to-zinc-500 bg-clip-text text-transparent font-extrabold">
-            Запустил. Готово.
+             Minecraft-проектов
           </span>
         </h1>
 
         {/* Subheadline - describe your product */}
         <p className="text-lg md:text-xl text-zinc-500 max-w-2xl mx-auto mb-10 leading-relaxed text-balance">
-          Универсальная платформа, которая помогает командам создавать, внедрять и масштабировать свои игровые проекты в 10 раз быстрее.
+          Создайте собственный игровой лаунчер, управляйте сборками и пользователями через единую панель, полностью на своих серверах.
         </p>
 
         {/* CTAs */}
