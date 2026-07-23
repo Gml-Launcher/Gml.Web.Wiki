@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import { LiquidCtaButton } from '../buttons/liquid-cta-button';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import {Desktop16Filled, Desktop16Regular, Desktop28Regular} from "@fluentui/react-icons";
+import LightRays from '../../homepage/LightRays/LightRays';
 
 const githubUsernames = [
   'Nik497926',
@@ -26,9 +27,26 @@ const githubUsernames = [
 
 export function HeroSection() {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-20 relative">
+    <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-20 relative overflow-hidden">
+      <div className="absolute inset-0">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#ffffff"
+          raysSpeed={1}
+          lightSpread={1}
+          rayLength={2}
+          pulsating={false}
+          fadeDistance={1}
+          saturation={1}
+          followMouse={false}
+          mouseInfluence={0.1}
+          noiseAmount={0}
+          distortion={0}
+        />
+      </div>
+
       {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/50 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/10 via-zinc-950/20 to-zinc-950" />
 
       {/* Content */}
       <div className="relative z-10 text-center max-w-4xl mx-auto">
