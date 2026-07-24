@@ -97,7 +97,7 @@ export function PricingSection() {
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className="text-sm font-medium text-zinc-500 uppercase tracking-wider mb-4">Тарифы</p>
+          <p className="text-sm font-medium text-zinc-500 uppercase tracking-wider mb-4">Готовое решение</p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-zinc-100 mb-4">
             Простые и прозрачные цены
           </h2>

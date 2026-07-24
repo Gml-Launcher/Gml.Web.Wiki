@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import { LiquidCtaButton } from '../buttons/liquid-cta-button';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import {Desktop16Filled, Desktop16Regular, Desktop28Regular} from "@fluentui/react-icons";
+import LightRays from '../../homepage/LightRays/LightRays';
 
 const githubUsernames = [
   'Nik497926',
@@ -21,33 +22,51 @@ const githubUsernames = [
   'pyw0ww',
   'KlamrFox',
   'pyw0w',
+  'serega404',
 ];
 
 export function HeroSection() {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-20 relative">
+    <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-20 relative overflow-hidden">
+      <div className="absolute inset-0">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#ffffff"
+          raysSpeed={1}
+          lightSpread={1}
+          rayLength={2}
+          pulsating={false}
+          fadeDistance={1}
+          saturation={1}
+          followMouse={false}
+          mouseInfluence={0.1}
+          noiseAmount={0}
+          distortion={0}
+        />
+      </div>
+
       {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/50 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/10 via-zinc-950/20 to-zinc-950" />
 
       {/* Content */}
-      <div className="relative z-10 text-center max-w-3xl mx-auto">
+      <div className="relative z-10 text-center max-w-4xl mx-auto">
         {/* Badge - customize your announcement */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/80 border border-zinc-800 mb-8">
-          <Desktop16Regular className="w-4 h-4 text-zinc-400" />
-          <span className="text-sm text-zinc-400">Кроссплатформенные решения</span>
+          <Sparkles className="w-4 h-4 text-zinc-400" />
+          <span className="text-sm text-zinc-400">100% Open Source</span>
         </div>
 
         {/* Headline - customize your value proposition */}
         <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6">
-          <span className="text-zinc-100 block font-extrabold">Развернул.</span>
+          <span className="text-zinc-100 block font-extrabold">Платформа для запуска</span>
           <span className="bg-gradient-to-r from-zinc-500 via-zinc-300 to-zinc-500 bg-clip-text text-transparent font-extrabold">
-            Запустил. Готово.
+             Minecraft-проектов
           </span>
         </h1>
 
         {/* Subheadline - describe your product */}
         <p className="text-lg md:text-xl text-zinc-500 max-w-2xl mx-auto mb-10 leading-relaxed text-balance">
-          Универсальная платформа, которая помогает командам создавать, внедрять и масштабировать свои игровые проекты в 10 раз быстрее.
+          Создайте собственный игровой лаунчер, управляйте сборками и пользователями через единую панель, полностью на своих серверах.
         </p>
 
         {/* CTAs */}
@@ -74,7 +93,7 @@ export function HeroSection() {
                   src={`https://github.com/${username}.png?size=60`}
                   alt={`User ${username}`}
                   loading="lazy"
-                  className={`w-10 h-10 rounded-full border-2 border-zinc-950 hover:-translate-y-1 transition object-cover z-[${index + 1}]`}
+                  className={`w-10 h-10 rounded-full border-2 border-zinc-950 bg-white hover:-translate-y-1 transition object-cover z-[${index + 1}]`}
                 />
               ))}
             </div>
