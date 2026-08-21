@@ -104,7 +104,7 @@ export function ScreenshotGallerySection() {
   return (
     <section
       id="product-showcase"
-      className="relative overflow-hidden bg-zinc-900/20 px-6 py-12 md:py-16"
+      className="relative overflow-hidden bg-zinc-900/60 px-6 py-12 md:py-16"
       aria-labelledby="product-showcase-title"
     >
       <div className="pointer-events-none absolute left-1/2 top-1/3 h-96 w-96 -translate-x-1/2 rounded-full bg-zinc-500/5 blur-3xl" />
