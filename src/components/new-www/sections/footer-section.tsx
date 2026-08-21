@@ -36,13 +36,11 @@ const footerLinks = {
   company: [
     { label: "О нас", href: "/about" },
     { label: "Блог", href: "https://blog.recloud.tech/category/gml/" },
-    { label: "Карьера", href: "/careers" },
-    { label: "Контакты", href: "/contact" },
   ],
-  legal: [
-    { label: "Конфиденциальность", href: "/privacy" },
-    { label: "Условия", href: "/terms" },
-    { label: "Безопасность", href: "/security" },
+  docs: [
+    { label: "Серверная часть", href: "/docs/category/gml-backend" },
+    { label: "Игровой лаунчер", href: "/docs/launcher" },
+    { label: "Игровой сервер", href: "/docs/server-minecraft" },
   ],
 };
 
@@ -92,7 +90,7 @@ export function FooterSection() {
           {/* Company Links */}
           <div>
             <h4 className="font-heading text-sm font-semibold text-zinc-100 mb-4">
-              Компания
+              Разработчики
             </h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
@@ -108,13 +106,13 @@ export function FooterSection() {
             </ul>
           </div>
 
-          {/* Legal Links */}
+          {/* Documentation Links */}
           <div>
             <h4 className="font-heading text-sm font-semibold text-zinc-100 mb-4">
-              Правовая информация
+              Документация
             </h4>
             <ul className="space-y-3">
-              {footerLinks.legal.map((link) => (
+              {footerLinks.docs.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
