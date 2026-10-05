@@ -93,7 +93,7 @@ export function PricingSection() {
   const [billingCycle, setBillingCycle] = useState<BillingCycle>('monthly');
 
   return (
-    <section id="pricing" className="px-6 py-24">
+    <section id="pricing" className="relative overflow-hidden bg-zinc-900/60 px-6 py-12 md:py-16">
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -137,7 +137,7 @@ export function PricingSection() {
               <div
                 key={plan.name}
                 className={`p-8 rounded-2xl border flex flex-col h-full ${
-                  plan.highlighted ? "bg-zinc-100 border-zinc-100" : "bg-zinc-900/50 border-zinc-800/50"
+                  plan.highlighted ? "bg-zinc-100 border-zinc-100" : "bg-black border-zinc-800/50"
                 }`}
               >
                 {/* Plan Header */}
