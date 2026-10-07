@@ -10,7 +10,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: 'Gml Launcher Wiki',
+    title: 'Gml Launcher',
     tagline: 'Документация Gml Launcher',
     favicon: 'img/favicon.ico',
 
