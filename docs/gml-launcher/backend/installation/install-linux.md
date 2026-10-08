@@ -12,11 +12,16 @@ For your first installation on a dedicated VPS, **we recommend `global` mode**. 
 A fresh VPS with a public IPv4 address and no existing websites or web proxy is the simplest setup. If nginx, Caddy, Traefik or another proxy already serves websites on the server, choose `external` and connect GML to that existing configuration.
 :::
 
-## Choose a proxy mode
+## Choose a mode
 
-The proxy accepts user requests and routes them to the dashboard, API and skin service. GML runs Angie in two modes.
+Expand the relevant guide. **`global`** configures HTTPS automatically on a dedicated server; **`external`** connects GML to your existing proxy.
 
-### `global`: Angie is the public entry point
+:::info Default mode
+A new installation proposes **`external`**. For the recommended automatic HTTPS setup, explicitly select **`2` / `global`** in the menu or pass `--proxy-mode global`.
+:::
+
+<details>
+<summary>global — automatic HTTPS (recommended for beginners)</summary>
 
 ```text
 User → https://gml.example.com:443 → Angie → dashboard / API / skins
@@ -25,20 +30,6 @@ User → https://gml.example.com:443 → Angie → dashboard / API / skins
 Angie binds public TCP ports **80 and 443**, obtains a Let's Encrypt certificate for your domain and redirects ordinary HTTP requests to HTTPS. Port 80 remains accessible for domain validation and certificate renewal.
 
 Use this mode when GML is the main web service on a dedicated server. Other applications can use other ports, but nginx, Apache, Caddy or another container must not occupy 80/443. The name `global` does not mean multi-site hosting: the standard configuration serves one configured GML domain.
-
-### `external`: GML runs behind your existing proxy
-
-```text
-User → your HTTPS nginx / Caddy / Traefik → Angie over HTTP:5003 → GML services
-```
-
-GML exposes its HTTP entry point on `PORT_GML_FRONTEND`, **5003** by default. Your outer proxy accepts domain requests on 80/443, obtains and renews the certificate, and forwards requests to GML. Bundled Angie still routes them between the services.
-
-Choose this mode for an existing website host, an existing HTTPS setup or custom routing. Without an outer proxy, the dashboard is available over HTTP, for example `http://SERVER_IP:5003`; this mode does not configure automatic public HTTPS.
-
-:::info Default mode
-A new installation proposes **`external`**. For the recommended automatic HTTPS setup, explicitly select **`2` / `global`** in the menu or pass `--proxy-mode global`.
-:::
 
 ## Requirements for `global`
 
@@ -88,48 +79,39 @@ sudo docker ps --format 'table {{.Names}}\t{{.Ports}}'
 
 If an existing website needs these ports, choose `external`. On a fresh server, identify and disable any unnecessary conflicting service specifically; do not stop all containers or web servers indiscriminately.
 
-If you already use UFW, allow incoming connections:
+### Recommended UFW setup for beginners
+
+On a dedicated VPS, beginners should **configure UFW themselves** to manage the host firewall. Gml Manager checks DNS and occupied ports but does not configure firewall rules for you.
+
+Allow three inbound TCP ports:
+
+- **22 — SSH:** remote access for installation, updates and administration. Allow it **before enabling UFW** to preserve access.
+- **80 — HTTP:** Angie redirects visitors to HTTPS; Let's Encrypt uses it for domain validation during certificate issuance and renewal. Keep it open after installation.
+- **443 — HTTPS:** encrypted access to the GML dashboard, API and skins through your domain.
+
+For a **fresh VPS with the standard SSH port 22**:
 
 ```bash
-sudo ufw status
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow 22/tcp
 sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
+sudo ufw enable
+sudo ufw status verbose
 ```
 
-These commands apply only to UFW. Configure equivalent rules with firewalld/nftables and your provider's firewall as needed. Do not enable a new firewall before ensuring access to your SSH port. Check IPv6 rules too if you publish AAAA.
+The commands block unapproved inbound connections and allow outbound traffic, add SSH/HTTP/HTTPS exceptions, enable UFW and display its status. Confirm the `ufw enable` prompt after checking your SSH exception. Expect `Status: active` and `ALLOW` rules for your SSH port, 80 and 443.
+
+**If SSH uses another port, replace `22/tcp` with your actual port before `ufw enable`.** Keep the current SSH session open and verify access through a second session after enabling the firewall. Allow any other required service ports on an existing server.
+
+UFW does not replace your VPS provider's firewall: allow SSH and TCP 80/443 there too.
 
 ## Install `global` step by step
 
-### 1. Connect and prepare tools
+Gml Manager prepares the required tools and checks public DNS and occupied ports. Create your domain and DNS records with your provider as required above, and configure firewall rules yourself. You do not need to install diagnostic tools or check DNS manually before starting the manager.
 
-Run installation commands on the server, for example in an SSH session. For **Debian/Ubuntu**:
-
-```bash
-sudo apt update
-sudo apt install -y curl ca-certificates dnsutils iproute2
-```
-
-Use the appropriate package manager on other supported distributions. `dig` from `dnsutils` is for manual DNS diagnostics; the installer itself checks DNS over HTTPS.
-
-### 2. Verify DNS before installation
-
-Check the server's public IPv4 and your domain's published records:
-
-```bash
-curl -4 -fsS https://api.ipify.org
-dig @1.1.1.1 +short A gml.example.com
-dig @1.1.1.1 +short AAAA gml.example.com
-```
-
-The first command's IPv4 and the A record must match. With no IPv6 configured, the AAAA answer should be empty. If IPv6 is configured, compare AAAA with:
-
-```bash
-curl -6 -fsS https://api64.ipify.org
-```
-
-A CNAME may also appear in `dig` output if used; the final A/AAAA records must still point directly to this server. Correct any mismatch and wait for public DNS updates before proceeding.
-
-### 3. Start Gml Manager
+### 1. Start Gml Manager
 
 Recommended interactive command:
 
@@ -156,7 +138,7 @@ The installer checks DNS and available ports, prepares Docker Compose and `.env`
 
 The installer waits for the certificate and checks it through a local HTTPS connection with hostname and trust validation. This can take several minutes. Wait for the success message and dashboard URL; a running container alone does not establish successful certificate issuance.
 
-### 4. Install with explicit parameters
+### 2. Install with explicit parameters
 
 After meeting the requirements, you can supply the installation parameters directly:
 
@@ -170,7 +152,7 @@ Replace the domain. `--accept-acme-terms` expresses your acceptance of the Let's
 `install --dir /srv/gml` **without** `--proxy-mode global` creates an `external` installation. Automatic HTTPS requires the global parameters shown above.
 :::
 
-### 5. Open the dashboard and verify HTTPS
+### 3. Open the dashboard and verify HTTPS
 
 Open **`https://gml.example.com`**. A redirect to `/mnt` is expected until initial setup is complete; follow the dashboard setup wizard. Use the configured domain, which the certificate covers.
 
@@ -187,53 +169,6 @@ Expected results:
 - HTTP returns **308** with `Location: https://gml.example.com/`.
 - HTTPS establishes a trusted TLS connection; the page may return 2xx or redirect to setup/authentication.
 - `/health` returns **200** when the API is working.
-
-## Configure `external`
-
-Select **`1` — `external`** during interactive installation, or supply explicit parameters:
-
-```bash
-curl -sSL https://raw.githubusercontent.com/Gml-Launcher/Gml.Backend/refs/heads/master/installer/gml-manager.sh | sudo sh -s -- install --dir /srv/gml --proxy-mode external
-```
-
-Open `http://SERVER_IP:5003` or point your outer proxy to this HTTP entry point. A proxy on the same host typically uses `http://127.0.0.1:5003`. In a separate container, `127.0.0.1` refers to that container itself; use a host address/network reachable from it.
-
-Configure the outer proxy to:
-
-- serve HTTPS and renew the domain certificate;
-- forward the whole site to GML's HTTP entry point, including API and skins;
-- support WebSocket with `Upgrade` / `Connection` headers for `/ws*`;
-- pass the original `Host`, `X-Forwarded-Proto`, `X-Real-IP` and a correct `X-Forwarded-For`.
-
-`external` trusts metadata supplied by the outer proxy. That proxy must form trusted forwarding headers; restrict network access to GML's HTTP entry point to the outer proxy. The outer proxy manages the certificate in this mode.
-
-## Update or change modes
-
-Use the existing installation directory. An ordinary update preserves the current mode when `--proxy-mode` is omitted:
-
-```bash
-curl -sSL https://raw.githubusercontent.com/Gml-Launcher/Gml.Backend/refs/heads/master/installer/gml-manager.sh | sudo sh -s -- update --dir /srv/gml
-```
-
-To switch **from `external` to `global`**, first meet all global requirements, including free ports 80/443 and direct DNS, then run:
-
-```bash
-curl -sSL https://raw.githubusercontent.com/Gml-Launcher/Gml.Backend/refs/heads/master/installer/gml-manager.sh | sudo sh -s -- update --dir /srv/gml --proxy-mode global --domain gml.example.com --accept-acme-terms
-```
-
-To switch **from `global` to `external`**:
-
-```bash
-curl -sSL https://raw.githubusercontent.com/Gml-Launcher/Gml.Backend/refs/heads/master/installer/gml-manager.sh | sudo sh -s -- update --dir /srv/gml --proxy-mode external
-```
-
-This transition restores the HTTP entry point to port 5003; your outer proxy must serve HTTPS after the switch. To change the domain in `global`, prepare DNS for the new name and run `update --proxy-mode global --domain YOUR_NEW_DOMAIN` with the remaining parameters from the example above.
-
-Without `--version`, update selects the latest stable release, so changing modes can also update services. Pass the current tag explicitly to retain it. The manager separately asks permission to overwrite its managed `docker-compose.yml`, even with command-line parameters; review your customizations before accepting.
-
-Back up your data before updating. The manager downloads images before stopping the old stack, but container switching causes an interruption. If the new configuration fails to start or obtain its certificate during an update, the manager attempts to restore the previous Compose, `.env` and stack. This does not replace backups. A certificate failure during a **new installation** stops the newly created stack and reports an error.
-
-For an installation created by the [legacy installer](https://github.com/Gml-Launcher/Gml.Backend.Installer), point Gml Manager to the existing directory when updating. `global` requires an Angie proxy image with HTTPS/ACME; the legacy YARP proxy does not support this mode.
 
 ## Troubleshoot `global`
 
@@ -279,6 +214,70 @@ sudo docker compose logs --tail 100 gml-web-api
 ```
 
 Access by IP may produce a certificate hostname error; use the domain configured for `global`. If the domain serves another website, check DNS and which server actually receives ports 80/443.
+
+
+</details>
+
+<details>
+<summary>external — behind an existing proxy</summary>
+
+```text
+User → your HTTPS nginx / Caddy / Traefik → Angie over HTTP:5003 → GML services
+```
+
+GML exposes its HTTP entry point on `PORT_GML_FRONTEND`, **5003** by default. Your outer proxy accepts domain requests on 80/443, obtains and renews the certificate, and forwards requests to GML. Bundled Angie still routes them between the services.
+
+Choose this mode for an existing website host, an existing HTTPS setup or custom routing. Without an outer proxy, the dashboard is available over HTTP, for example `http://SERVER_IP:5003`; this mode does not configure automatic public HTTPS.
+
+## Configure `external`
+
+Select **`1` — `external`** during interactive installation, or supply explicit parameters:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/Gml-Launcher/Gml.Backend/refs/heads/master/installer/gml-manager.sh | sudo sh -s -- install --dir /srv/gml --proxy-mode external
+```
+
+Open `http://SERVER_IP:5003` or point your outer proxy to this HTTP entry point. A proxy on the same host typically uses `http://127.0.0.1:5003`. In a separate container, `127.0.0.1` refers to that container itself; use a host address/network reachable from it.
+
+Configure the outer proxy to:
+
+- serve HTTPS and renew the domain certificate;
+- forward the whole site to GML's HTTP entry point, including API and skins;
+- support WebSocket with `Upgrade` / `Connection` headers for `/ws*`;
+- pass the original `Host`, `X-Forwarded-Proto`, `X-Real-IP` and a correct `X-Forwarded-For`.
+
+`external` trusts metadata supplied by the outer proxy. That proxy must form trusted forwarding headers; restrict network access to GML's HTTP entry point to the outer proxy. The outer proxy manages the certificate in this mode.
+
+
+</details>
+
+## Update or change modes
+
+Use the existing installation directory. An ordinary update preserves the current mode when `--proxy-mode` is omitted:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/Gml-Launcher/Gml.Backend/refs/heads/master/installer/gml-manager.sh | sudo sh -s -- update --dir /srv/gml
+```
+
+To switch **from `external` to `global`**, first meet all global requirements, including free ports 80/443 and direct DNS, then run:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/Gml-Launcher/Gml.Backend/refs/heads/master/installer/gml-manager.sh | sudo sh -s -- update --dir /srv/gml --proxy-mode global --domain gml.example.com --accept-acme-terms
+```
+
+To switch **from `global` to `external`**:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/Gml-Launcher/Gml.Backend/refs/heads/master/installer/gml-manager.sh | sudo sh -s -- update --dir /srv/gml --proxy-mode external
+```
+
+This transition restores the HTTP entry point to port 5003; your outer proxy must serve HTTPS after the switch. To change the domain in `global`, prepare DNS for the new name and run `update --proxy-mode global --domain YOUR_NEW_DOMAIN` with the remaining parameters from the example above.
+
+Without `--version`, update selects the latest stable release, so changing modes can also update services. Pass the current tag explicitly to retain it. The manager separately asks permission to overwrite its managed `docker-compose.yml`, even with command-line parameters; review your customizations before accepting.
+
+Back up your data before updating. The manager downloads images before stopping the old stack, but container switching causes an interruption. If the new configuration fails to start or obtain its certificate during an update, the manager attempts to restore the previous Compose, `.env` and stack. This does not replace backups. A certificate failure during a **new installation** stops the newly created stack and reports an error.
+
+For an installation created by the [legacy installer](https://github.com/Gml-Launcher/Gml.Backend.Installer), point Gml Manager to the existing directory when updating. `global` requires an Angie proxy image with HTTPS/ACME; the legacy YARP proxy does not support this mode.
 
 ## Other ways to run GML
 
