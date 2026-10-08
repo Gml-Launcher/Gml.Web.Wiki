@@ -6,12 +6,18 @@ sidebar_position: 3
 
 Инструкции по установке и настройке серверной части проекта для прочих операционных систем, не имеющих установщика
 
+:::info Разработка и стабильная установка
+Для запуска исходников в Rider или через `scripts/dev.sh` используйте [инструкцию локальной разработки](development). Там API автоматически создаёт dev-ключ при первом запуске.
+
+Команды ниже запускают Docker-образы `master`. Для установки стабильной версии используйте [Gml Manager](install-linux). В production задавайте собственный `SECURITY_KEY` через окружение; замените `<your-security-key>` результатом команды `openssl rand -hex 32`.
+:::
+
 ## Клонирование репозитория
 
 Выполните следующую команду в вашем терминале:
 
 ```
-git clone --recursive -b v2025.3.2 https://github.com/GamerVII-NET/Gml.Backend.git
+git clone --recursive -b master https://github.com/Gml-Launcher/Gml.Backend.git
 ```
 
 ## Переход в директорию проекта
@@ -36,7 +42,7 @@ openssl rand -hex 32
 
 :::
 
-```yaml
+```dotenv
 # Пример уже настроенного .env
 
 # UID (User Identifier) и GID (Group Identifier) используется
@@ -44,27 +50,21 @@ openssl rand -hex 32
 UID=0
 GID=0
 
-SECURITY_KEY=643866c80c46c909332b30600d3265803a3807286d6eb7c0d2e164877c809519
+SECURITY_KEY=<your-security-key>
 PROJECT_NAME=GmlBackendPanel
 PROJECT_DESCRIPTION=
 PROJECT_POLICYNAME=GmlServerPolicy
 PROJECT_PATH=
 
-  # Включить Swagger
+# Включить Swagger
 SWAGGER_ENABLED=true
 
-  # Настройки внешнего доступа
-  # Порты, на которых будут работать приложения
-  # Web Api
-PORT_GML_BACKEND=5000
-  # Панель управления проектом
+# Настройки внешнего доступа
+# Порты, на которых будут работать приложения
+# Панель управления проектом
 PORT_GML_FRONTEND=5003
-  # Файловый сервис
-PORT_GML_FILES=5005
-  # Сервис скинов
-PORT_GML_SKINS=5006
 
-  # Микросервисы:
+# Микросервисы:
 SERVICE_TEXTURE_ENDPOINT=http://gml-web-skins:8085
 MARKET_ENDPOINT=https://gml-market.recloud.tech
 ```
@@ -74,7 +74,7 @@ MARKET_ENDPOINT=https://gml-market.recloud.tech
 Выполните следующую команду в вашем терминале:
 
 ```bash
-docker compose up -f ./docker-compose-prod.yml -d
+docker compose -f ./docker-compose-prod.yml up -d
 ```
 
 Пожалуйста, убедитесь, что Docker установлен и работает на вашем компьютере/сервере для выполнения этой команды.

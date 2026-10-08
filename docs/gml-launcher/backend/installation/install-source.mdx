@@ -6,12 +6,18 @@ sidebar_position: 3
 
 Instructions for installing and configuring the server component of the project for other operating systems that do not have an installer.
 
+:::info Development and stable installation
+To run the source with Rider or `scripts/dev.sh`, follow the [local development guide](development). The API creates a development key automatically on first launch.
+
+The commands below run Docker images tagged `master`. For a stable release, use [Gml Manager](install-linux). For production, provide your own `SECURITY_KEY` through the environment; replace `<your-security-key>` with the output of `openssl rand -hex 32`.
+:::
+
 ## Cloning the Repository
 
 Run the following command in your terminal:
 
 ```bash
-git clone --recursive -b v2025.3.2 https://github.com/GamerVII-NET/Gml.Backend.git
+git clone --recursive -b master https://github.com/Gml-Launcher/Gml.Backend.git
 ```
 
 ## Navigate to the Project Directory
@@ -35,7 +41,7 @@ openssl rand -hex 32
 ```
 :::
 
-```yaml
+```dotenv
 # Example of a pre-configured .env
 
 # UID (User Identifier) and GID (Group Identifier) are used
@@ -43,7 +49,7 @@ openssl rand -hex 32
 UID=0
 GID=0
 
-SECURITY_KEY=643866c80c46c909332b30600d3265803a3807286d6eb7c0d2e164877c809519
+SECURITY_KEY=<your-security-key>
 PROJECT_NAME=GmlBackendPanel
 PROJECT_DESCRIPTION=
 PROJECT_POLICYNAME=GmlServerPolicy
@@ -54,14 +60,8 @@ SWAGGER_ENABLED=true
 
 # External access settings
 # Ports for applications
-# Web API
-PORT_GML_BACKEND=5000
 # Project management panel
 PORT_GML_FRONTEND=5003
-# File service
-PORT_GML_FILES=5005
-# Skins service
-PORT_GML_SKINS=5006
 
 # Microservices:
 SERVICE_TEXTURE_ENDPOINT=http://gml-web-skins:8085
@@ -73,7 +73,7 @@ MARKET_ENDPOINT=https://gml-market.recloud.tech
 Run the following command in your terminal:
 
 ```bash
-docker compose up -f ./docker-compose-prod.yml -d
+docker compose -f ./docker-compose-prod.yml up -d
 ```
 
 Please make sure Docker is installed and running on your computer/server to execute this command.
