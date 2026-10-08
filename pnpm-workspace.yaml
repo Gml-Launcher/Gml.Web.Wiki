@@ -1,0 +1,7 @@
+allowBuilds:
+  core-js: false
+  core-js-pure: false
+
+# Webpack 5.106+ validates ProgressPlugin options; webpackbar 7 keeps its options separate.
+overrides:
+  webpackbar: 7.0.0
