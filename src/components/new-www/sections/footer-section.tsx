@@ -1,5 +1,5 @@
 import Link from "@docusaurus/Link";
-import { Github } from "lucide-react";
+import { GitHub as Github } from "react-feather";
 
 function DiscordLogo({ className }: { className?: string }) {
   return (
