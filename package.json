@@ -24,7 +24,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^11.0.0",
     "gsap": "^3.15.0",
-    "lucide-react": "^0.460.0",
+    "lucide-react": "^1.55.0",
     "ogl": "^1.0.11",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.3.0",
